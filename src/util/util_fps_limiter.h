@@ -1,5 +1,7 @@
 #pragma once
 
+#include <array>
+
 #include "thread.h"
 #include "util_time.h"
 
@@ -58,6 +60,12 @@ namespace dxvk {
 
     bool            m_initialized     = false;
     bool            m_envOverride     = false;
+
+    uint32_t                  m_heuristicFrameCount = 0;
+    std::array<TimePoint, 16> m_heuristicFrameTimes = { };
+    bool                      m_heuristicEnable = false;
+
+    bool testRefreshHeuristic(TimerDuration interval, TimePoint now);
 
     void initialize();
 
